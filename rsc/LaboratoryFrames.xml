@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LaboratoryFrames>
 	<FrameIndex Scheme="1" FrameID="1">
-		<LaboratoryFrame Name="Vega" TimeLimit="30" TimeScale="Minute" ShowTime="Yes" Language="ru">
+		<LaboratoryFrame Name="CNN" TimeLimit="30" TimeScale="Minute" ShowTime="Yes" Language="ru">
 			<ToolIndex Scheme="1" ToolID="1"/>
 			<Data contentType="xhtml">test</Data>
 			<LaboratoryTestsGroups LaboratoryTestsGroupsID="1" LimitOnCollection="1800" LimitOnTest="1800" TimeScale="Second" URL="rlcp://user:user@127.0.0.1:3000" Weight="1" >
