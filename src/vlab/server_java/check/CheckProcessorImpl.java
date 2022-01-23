@@ -1,5 +1,6 @@
 package vlab.server_java.check;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import rlcp.check.ConditionForChecking;
 import rlcp.generate.GeneratingResult;
@@ -23,10 +24,10 @@ public class CheckProcessorImpl implements PreCheckResultAwareCheckProcessor<Str
 
         System.out.println(instructions);
         JSONObject answers = new JSONObject(instructions);
-        String answer = answers.getString("result");
-        System.out.println("answer: " + answer);
+        JSONArray convResult = answers.getJSONArray("convResult");
+        JSONArray poolResult = answers.getJSONArray("poolResult");
 
-        BigDecimal points = BigDecimal.valueOf(Integer.parseInt(answer) / 10.0);
+        BigDecimal points = new BigDecimal("1.0");
         String comment = "Ответ проверен";
 
         return new CheckingSingleConditionResult(points, comment);
