@@ -1,8 +1,18 @@
 var Vlab = {
 
     byDefault: {
-        inputMatrix: "[[1,2],[3,4]]",
-        inputMatrixSize: 2,
+        input: {
+            data: [[1,2,3],[4,5,6],[7,8,9]]
+        },
+        conv: {
+            kernel: [[0,1],[-1,0]],
+            stride: 1,
+            padding: 1
+        },
+        pool: {
+            size: 2,
+            type: 0
+        }
     },
     answer: {
         result: ""
@@ -41,18 +51,47 @@ var Vlab = {
             answer = previousSolution;
         }
 
-        const text = "Текст задания";
-        const text_info = "Текст подсказки";
-        const table = `
-            <h1>Контент задания</h1>
-            <p>Размер входной матрицы: ${variant.inputMatrixSize}</p>
-            <p>Матрица: ${variant.inputMatrix}</p>
-        `;
-
-        const content = text + "<br>" +
-            table + "<br>" +
-            '<input placeholder="10" id="answerInput"></input>' +
-            text_info + "<br>";
+        const content = `
+            <table class="table table-bordered">
+                <tr>
+                    <td class="d-flex justify-content-between">
+                        <h2>CNN</h2>
+                        <button type="button" class="btn btn-info" id="infoModalOpener">Справка</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="table table-bordered" id="table">
+                            <thead>
+                                <td>Слой</td>
+                                <td>Входные данные</td>
+                                <td>Выходные данные</td>
+                            </thead>
+                            <tr>
+                                <td>
+                                    <p>Сверточный слой</p>
+                                    <p>padding = ${variant.conv.padding}</p>
+                                    <p>stride = ${variant.conv.stride}</p>
+                                </td>
+                                <td>${ JSON.stringify(variant.input.data) }</td>
+                                <td>
+                                    <input placeholder="10" id="answerInput"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>Слой пулинга</p>
+                                    <p>size = ${variant.pool.size}</p>
+                                    <p>type = ${variant.pool.type ? 'max' : 'mean'}</p>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        `
 
         $('#jsLab').html(content)
 

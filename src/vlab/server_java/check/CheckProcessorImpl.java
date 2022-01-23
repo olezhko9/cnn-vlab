@@ -9,7 +9,6 @@ import rlcp.server.processor.check.PreCheckProcessor.PreCheckResult;
 import rlcp.server.processor.check.PreCheckResultAwareCheckProcessor;
 
 import java.math.BigDecimal;
-import java.sql.SQLOutput;
 
 /**
  * Simple CheckProcessor implementation. Supposed to be changed as needed to provide
@@ -21,10 +20,6 @@ public class CheckProcessorImpl implements PreCheckResultAwareCheckProcessor<Str
         System.out.println("code: " + generatingResult.getCode());
         System.out.println("instructions: " + generatingResult.getInstructions());
         System.out.println("text: " + generatingResult.getText());
-
-        JSONObject variant = new JSONObject(generatingResult.getCode());
-        int inputMatrixSize = variant.getInt("inputMatrixSize");
-        System.out.println(inputMatrixSize + Integer.toString(inputMatrixSize));
 
         System.out.println(instructions);
         JSONObject answers = new JSONObject(instructions);
