@@ -39,19 +39,31 @@ public class CheckProcessorImpl implements PreCheckResultAwareCheckProcessor<Str
         Matrix poolResult = Matrix.fromJSON(poolResultJson);
 
         // проверка
+        String comment = "";
+
         Matrix convTrueMatrix = inputData.convolve(convKernel, convPadding, convStride);
         System.out.println("Conv true:");
         convTrueMatrix.print();
         int convNotEqualNumber = convTrueMatrix.compare(convResult);
+        if (convNotEqualNumber != 0) {
+            comment += convNotEqualNumber + " элементов матрицы сверточного слоя рассчитаны неверно. ";
+        }
 
         Matrix poolTrueMatrix = convTrueMatrix.pool(poolSize);
         System.out.println("Pool true:");
         poolTrueMatrix.print();
         int poolNotEqualNumber = poolTrueMatrix.compare(poolResult);
+        if (poolNotEqualNumber != 0) {
+            comment += poolNotEqualNumber + " элементов матрицы слоя пулинга рассчитаны неверно.";
+        }
 
-        double score = 80 * ((16 - convNotEqualNumber) / 16.0) + 20 * (4 - poolNotEqualNumber) / 4.0;
-        BigDecimal points = new BigDecimal(score / 100.0);
-        String comment = "Ответ проверен";
+        if (convNotEqualNumber + poolNotEqualNumber == 0) {
+            comment += "Выходные матрицы рассчитаны верно.";
+        }
+
+        double convPoints = 80 * (16 - convNotEqualNumber) / 16.0;
+        double poolPoints = 20 * (4 - poolNotEqualNumber) / 4.0;
+        BigDecimal points = BigDecimal.valueOf((convPoints + poolPoints) / 100.0);
 
         return new CheckingSingleConditionResult(points, comment);
     }

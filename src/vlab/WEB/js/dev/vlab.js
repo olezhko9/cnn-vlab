@@ -44,7 +44,6 @@ var Vlab = {
     },
 
     setVariant : function(str){
-        console.log('setVariant.variant', str);
         if (str) {
             try {
                 return JSON.parse(str);
@@ -78,9 +77,6 @@ var Vlab = {
                     convResult: getEmptyMatrix(4),
                     poolResult: getEmptyMatrix(2)
                 },
-            },
-            created() {
-                console.log('init.variant', this.variant);
             },
 
             template: `
@@ -137,7 +133,6 @@ var Vlab = {
     },
 
     getResults: function(){
-        console.log(this.app.answer);
         return JSON.stringify(this.app.answer);
     },
 

@@ -45,8 +45,11 @@ public class GenerateProcessorImpl implements GenerateProcessor {
         variant.put("conv", convLayer);
         variant.put("pool", poolLayer);
 
-        String instructions = "instructions";
-        String text = "Вариант VL загружен";
+        String instructions = "инструкции";
+        String text = "В данном задании вам предстоит ощутить себя в роли сверточной нейронной сети, состоящей из двух " +
+                "слоев: свертки и пулинга. Параметы каждого из слоев указаны в таблице ниже в первой колонке, входные " +
+                "данные слоя указаны во второй колонке. Применив характерные для обозначенных слоев операции, заполните " +
+                "матрицы с выходными значениями слоев в третьей колонке.";
         String code = variant.toString();
 
         return new GeneratingResult(text, code, instructions);
