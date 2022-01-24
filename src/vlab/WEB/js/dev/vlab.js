@@ -39,8 +39,7 @@ var Vlab = {
             padding: 1
         },
         pool: {
-            size: 2,
-            type: 0
+            size: 2
         }
     },
 
@@ -120,7 +119,6 @@ var Vlab = {
                                     <td>
                                         <p><b>Слой пулинга</b></p>
                                         <p>size = {{variant.pool.size}}</p>
-                                        <p>type = {{variant.pool.type ? 'max' : 'mean'}}</p>
                                     </td>
                                     <td>
                                         <matrix :size="4" :editable="false" :fill="answer.convResult" />
