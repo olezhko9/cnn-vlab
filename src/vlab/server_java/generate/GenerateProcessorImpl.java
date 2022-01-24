@@ -15,19 +15,27 @@ import java.util.Arrays;
 public class GenerateProcessorImpl implements GenerateProcessor {
     @Override
     public GeneratingResult generate(String condition) {
-        final int inputMatrixSize = 5;
+        // размер входного слоя, размер ядра свертки, conv. padding, conv. stride
+        int[][] variants = {
+                {6, 3, 0, 1},
+                {5, 2, 0, 1},
+                {5, 4, 1, 1},
+                {5, 3, 2, 2},
+                {6, 2, 1, 2},
+        };
+
+        final int variantId = Utils.getRandomIntInRange(0, variants.length);
+        final int[] variantParams = variants[variantId];
+
+        final int inputMatrixSize = variantParams[0];
         Matrix inputMatrix = Matrix.getRandomMatrix(inputMatrixSize, 0, 9);
 
-        final int convKernelSize = 3;
+        final int convKernelSize = variantParams[1];
         Matrix convKernelMatrix = Matrix.getRandomMatrix(convKernelSize, -1, 1);
-        final int convStride = Utils.getRandomIntInRange(1, 2);
-        final int convPadding = Utils.getRandomIntInRange(1, 2);
+        final int convPadding = variantParams[2];
+        final int convStride = variantParams[3];
 
         final int poolSize = 2;
-        final int poolType = Utils.getRandomIntInRange(0, 1); // 0 - max, 1 - mean
-
-        System.out.println("Входная матрица: " + Arrays.deepToString(inputMatrix.data));
-        System.out.println("Ядро свертки: " + Arrays.deepToString(convKernelMatrix.data));
 
         JSONObject inputLayer = new JSONObject();
         inputLayer.put("data", inputMatrix.data);
