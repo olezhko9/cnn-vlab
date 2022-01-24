@@ -61,8 +61,10 @@ public class CheckProcessorImpl implements PreCheckResultAwareCheckProcessor<Str
             comment += "Выходные матрицы рассчитаны верно.";
         }
 
-        double convPoints = 80 * (16 - convNotEqualNumber) / 16.0;
-        double poolPoints = 20 * (4 - poolNotEqualNumber) / 4.0;
+        final int convTotalNum = convTrueMatrix.size * convTrueMatrix.size;
+        final int poolTotalNum = poolTrueMatrix.size * poolTrueMatrix.size;
+        double convPoints = 80.0 * (convTotalNum - convNotEqualNumber) / convTotalNum;
+        double poolPoints = 20.0 * (poolTotalNum - poolNotEqualNumber) / poolTotalNum;
         BigDecimal points = BigDecimal.valueOf((convPoints + poolPoints) / 100.0);
 
         return new CheckingSingleConditionResult(points, comment);
