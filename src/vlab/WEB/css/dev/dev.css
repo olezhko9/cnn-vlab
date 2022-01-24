@@ -20,3 +20,15 @@ table p {
     height: 100%;
     text-align: center;
 }
+
+/* Chrome, Safari, Edge, Opera */
+.matrix_cell > input::-webkit-outer-spin-button,
+.matrix_cell > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.matrix_cell > input[type=number] {
+  -moz-appearance: textfield;
+}
