@@ -6,8 +6,6 @@ import rlcp.server.processor.generate.GenerateProcessor;
 import vlab.server_java.Matrix;
 import vlab.server_java.Utils;
 
-import java.util.Arrays;
-
 /**
  * Simple GenerateProcessor implementation. Supposed to be changed as needed to
  * provide necessary Generate method support.
@@ -16,7 +14,7 @@ public class GenerateProcessorImpl implements GenerateProcessor {
     @Override
     public GeneratingResult generate(String condition) {
         // размер входного слоя, размер ядра свертки, conv. padding, conv. stride
-        int[][] variants = {
+        int[][] presets = {
                 {6, 3, 0, 1},
                 {5, 2, 0, 1},
                 {5, 4, 1, 1},
@@ -24,8 +22,8 @@ public class GenerateProcessorImpl implements GenerateProcessor {
                 {6, 2, 1, 2},
         };
 
-        final int variantId = Utils.getRandomIntInRange(0, variants.length);
-        final int[] variantParams = variants[variantId];
+        final int presetId = Utils.getRandomIntInRange(0, presets.length);
+        final int[] variantParams = presets[presetId];
 
         final int inputMatrixSize = variantParams[0];
         Matrix inputMatrix = Matrix.getRandomMatrix(inputMatrixSize, 0, 9);

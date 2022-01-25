@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-            <html>
-            <head>
-            <meta charset='utf-8'/>
-            <title>ToolViewer</title>
-        
-            <link rel="stylesheet" href="css/lib/bootstrap.min.css" type="text/css" />
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <title>ToolViewer</title>
 
-        
-            <link rel="stylesheet" href="css/dev/dev.css" type="text/css" />
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/dev/dev.css" type="text/css"/>
+</head>
+<body>
+    <div id="jsLab"></div>
+    <input type="text" value="genfake" id="preGeneratedCode"/>
+    <input type="text" value="calcfake" id="calculatedCode"/>
+    <input type="text" value="prevsolfake" id="previousSolution"/>
+    <script type="text/javascript" src="js/lib/vue.js"></script>
+    <script type="text/javascript" src="js/dev/vlab.js"></script>
 
-        
-            </head>
-            <body>
-            <div id="jsLab"></div>
-            <input type="text" value="genfake" id="preGeneratedCode"/>
-            <input type="text" value="calcfake" id="calculatedCode"/>
-            <input type="text" value="prevsolfake" id="previousSolution"/>
-        <script type="text/javascript" src="js/lib/jquery-3.3.1.slim.min.js"></script>
-<script type="text/javascript" src="js/lib/vue.js"></script>
-<script type="text/javascript" src="js/dev/vlab.js"></script>
-
-            <script>
-            Vlab.init("this")
-            </script>
-            </body>
-            </html>
+    <script>
+        Vlab.init()
+    </script>
+</body>
+</html>
         
